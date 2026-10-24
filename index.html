@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="description" content="Aditta Datta from Chattogram, Bangladesh. I build bots, APIs and Flutter apps as Zeroex.">
+  <title>Aditta Datta | Developer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface-soft: #21262d;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --text-bold: #f0f6fc;
+      --muted: #8b949e;
+      --accent: #238636;
+      --accent-hover: #2ea043;
+      --accent-glow: rgba(35, 134, 54, 0.25);
+      --accent-text: #3fb950;
+      --radius: 12px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+    [data-theme="light"] {
+      color-scheme: light;
+      --bg: #f6f8fa;
+      --surface: #ffffff;
+      --surface-soft: #eef0f3;
+      --border: #d0d7de;
+      --text: #24292f;
+      --text-bold: #0f1419;
+      --muted: #57606a;
+      --accent: #1f883d;
+      --accent-hover: #1a7f37;
+      --accent-glow: rgba(31, 136, 61, 0.15);
+      --accent-text: #1a7f37;
+      --shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Bengali", Arial, sans-serif;
+      line-height: 1.65;
+      transition: background 0.25s ease, color 0.25s ease;
+      background-image: radial-gradient(var(--border) 0.75px, transparent 0.75px);
+      background-size: 24px 24px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 3px; }
+    .icon { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+    .wrap { width: min(1080px, calc(100% - 32px)); margin-inline: auto; }
+
+    /* Top bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .wordmark { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.03em; color: var(--text-bold); }
+    .wordmark span { color: var(--accent-text); }
+    .navlinks { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 0.9rem; font-weight: 500; }
+    .navlinks a:hover { color: var(--text-bold); }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text);
+      background: var(--surface);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    .theme-toggle:hover { border-color: var(--muted); }
+
+    /* Hero */
+    .hero { padding: 64px 0 56px; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 48px; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-text); box-shadow: 0 0 8px var(--accent-text); animation: pulse 2.4s infinite; }
+    @keyframes pulse { 50% { opacity: 0.35; } }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      color: var(--text-bold);
+      margin-bottom: 8px;
+    }
+    h1 .surname { color: var(--accent-text); }
+    .role { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--muted); font-weight: 500; margin-bottom: 18px; }
+    .intro { max-width: 540px; font-size: 1rem; }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: var(--surface);
+      color: var(--text-bold);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .button:hover { transform: translateY(-2px); border-color: var(--muted); box-shadow: var(--shadow); }
+    .button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .button.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
+    .hero-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .profile-row { display: flex; align-items: center; gap: 18px; margin-bottom: 24px; }
+    .avatar-wrap {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--surface-soft);
+      color: var(--accent-text);
+      font-size: 1.5rem;
+      font-weight: 800;
+      border: 2px solid var(--border);
+      box-shadow: 0 0 16px var(--accent-glow);
+      overflow: hidden;
+    }
+    .avatar { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .profile-info strong { font-size: 1.1rem; color: var(--text-bold); display: block; }
+    .location { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.86rem; margin-top: 2px; }
+    .location .icon { width: 14px; height: 14px; }
+
+    .brand-section { border-top: 1px solid var(--border); padding-top: 18px; }
+    .brand-header { display: flex; align-items: center; justify-content: space-between; }
+    .brand-label { color: var(--muted); font-size: 0.8rem; font-weight: 600; }
+    .zeroex-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); }
+    .brand-name { font-size: 2.2rem; letter-spacing: -0.05em; font-weight: 800; color: var(--text-bold); line-height: 1.1; margin: 8px 0 2px; }
+    .brand-name span { color: var(--accent-text); }
+    .brand-caption { color: var(--muted); font-size: 0.84rem; }
+    .brand-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: var(--accent-text); font-size: 0.86rem; font-weight: 600; }
+    .brand-link:hover { text-decoration: underline; }
+    .brand-link .icon { width: 12px; height: 12px; }
+
+    /* Sections */
+    section { padding: 52px 0; border-top: 1px solid var(--border); }
+    .section-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 24px; }
+    .section-number { color: var(--accent-text); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; font-weight: 700; }
+    h2 { font-size: 1.5rem; letter-spacing: -0.03em; color: var(--text-bold); }
+    .section-note { color: var(--muted); font-size: 0.85rem; margin-left: auto; }
+
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; }
+    .about-copy p { margin-bottom: 14px; }
+    .quote {
+      margin-top: 20px;
+      padding: 14px 18px;
+      border-left: 3px solid var(--accent-text);
+      border-radius: 0 8px 8px 0;
+      background: var(--surface-soft);
+      color: var(--text-bold);
+      font-size: 0.94rem;
+    }
+
+    .education-list { display: grid; gap: 12px; }
+    .education-item { padding: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+    .edu-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .edu-top strong { font-size: 0.95rem; color: var(--text-bold); }
+    .year { color: var(--accent-text); font-size: 0.8rem; font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 700; white-space: nowrap; }
+    .edu-note { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+
+    .skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 10px; }
+    .skill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: border-color 0.2s ease;
+    }
+    .skill:hover { border-color: var(--muted); }
+    .skill-icon {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--surface-soft);
+    }
+    .skill-icon img, .skill-icon svg { width: 20px; height: 20px; display: block; }
+    .avatar, .zeroex-avatar { background: var(--surface-soft); }
+
+    /* Projects */
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+    .project {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .project strong { color: var(--text-bold); font-size: 1.05rem; }
+    .project p { font-size: 0.92rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 10px; }
+    .tags span { padding: 2px 10px; border-radius: 20px; background: var(--surface-soft); color: var(--muted); font-size: 0.76rem; font-weight: 600; }
+    .more { margin-top: 18px; color: var(--muted); font-size: 0.92rem; }
+    .more a { color: var(--accent-text); font-weight: 600; }
+    .more a:hover { text-decoration: underline; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .contact-card:hover { border-color: var(--accent-text); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .contact-icon-bg { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 8px; background: var(--surface-soft); color: var(--accent-text); flex-shrink: 0; }
+    .contact-icon-bg .icon { width: 20px; height: 20px; }
+    .contact-details { display: flex; flex-direction: column; min-width: 0; }
+    .contact-label { color: var(--muted); font-size: 0.78rem; font-weight: 600; }
+    .contact-value { font-weight: 600; color: var(--text-bold); font-size: 0.92rem; overflow-wrap: anywhere; }
+
+    footer { padding: 28px 0 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a:hover { color: var(--accent-text); }
+
+    @media (max-width: 850px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .section-note { display: none; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: calc(100% - 24px); }
+      .nav { flex-wrap: wrap; padding: 10px 0; }
+      .navlinks { order: 3; width: 100%; gap: 18px; overflow-x: auto; white-space: nowrap; font-size: 0.86rem; padding-bottom: 2px; }
+      .hero { padding: 36px 0 32px; }
+      section { padding: 40px 0; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .status-dot { animation: none; }
+      .button, .contact-card { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H5v12h12v-6h2v6c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></symbol>
+    <symbol id="i-tg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.75 3.99-1.73 6.66-2.87 8.01-3.43 3.82-1.59 4.61-1.87 5.13-1.88.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.22z"/></symbol>
+    <symbol id="i-api" viewBox="0 0 24 24"><path fill="currentColor" d="M8.7 16.3L4.4 12l4.3-4.3L7.3 6.3 1.6 12l5.7 5.7 1.4-1.4zm6.6 0l4.3-4.3-4.3-4.3 1.4-1.4 5.7 5.7-5.7 5.7-1.4-1.4z"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.2 5.42 3.15 7.16.16.14.26.35.27.57l.05 1.78c.02.57.6.94 1.12.71l1.98-.87c.17-.07.35-.09.52-.05.91.25 1.87.38 2.91.38 5.64 0 10-4.13 10-9.7S17.64 2 12 2zm6 7.46l-2.94 4.66c-.47.74-1.47.93-2.17.4l-2.34-1.75a.6.6 0 00-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66c.47-.74 1.47-.93 2.17-.4l2.34 1.75c.21.16.5.16.72 0l3.16-2.4c.42-.32.97.18.69.63z"/></symbol>
+  </svg>
+
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="wordmark" href="#home">Aditta <span>Datta</span></a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" type="button">
+        <span id="themeIcon" aria-hidden="true">☀</span>
+        <span id="themeText">Light mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" style="border-top:0">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="status"><span class="status-dot"></span> Open to small projects</div>
+          <h1>Aditta <span class="surname">Datta</span></h1>
+          <p class="role">Developer from Chattogram</p>
+          <p class="intro">I make bots, small APIs, and Android apps with Flutter. Most of it starts as something I needed for myself, then I clean it up and put it on GitHub.</p>
+          <div class="actions">
+            <a class="button primary" href="https://github.com/Aditta-Datta" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+              GitHub
+            </a>
+            <a class="button" href="#contact">Get in touch</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Profile">
+          <div class="profile-row">
+            <div class="avatar-wrap" aria-hidden="false">
+              AD
+              <img class="avatar" src="https://github.com/Aditta-Datta.png?size=160" alt="Aditta Datta" width="80" height="80" onerror="this.remove()">
+            </div>
+            <div class="profile-info">
+              <strong>Aditta Datta</strong>
+              <div class="location"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Chattogram, Bangladesh</div>
+              <div class="location">Philosophy student, National University</div>
+            </div>
+          </div>
+          <div class="brand-section">
+            <div class="brand-header">
+              <div class="brand-label">I build under the name</div>
+              <img class="zeroex-avatar" src="https://github.com/ZeroEx-0X.png?size=96" alt="Zeroex logo" width="42" height="42" onerror="this.remove()">
+            </div>
+            <div class="brand-name">Zeroe<span>x</span></div>
+            <div class="brand-caption">Bots, APIs and apps</div>
+            <a class="brand-link" href="https://github.com/ZeroEx-0X/" target="_blank" rel="noopener noreferrer">
+              github.com/ZeroEx-0X
+              <svg class="icon" aria-hidden="true"><use href="#i-out"/></svg>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <div class="section-head">
+            <span class="section-number">01.</span>
+            <h2>About me</h2>
+          </div>
+          <p>I’m Aditta, from Chattogram. I’m studying philosophy at National University, and coding is the thing I do outside of class.</p>
+          <p>I started with Messenger and Telegram bots, then moved on to REST APIs and backend scripts. These days I mostly write Flutter apps. I learn by building something, breaking it, and fixing it until it works.</p>
+          <div class="quote">Nobody taught me this in class. Docs, error messages and a lot of trial and error did.</div>
+        </div>
+
+        <div id="education">
+          <div class="section-head">
+            <span class="section-number">02.</span>
+            <h2>Education</h2>
+          </div>
+          <div class="education-list">
+            <article class="education-item">
+              <div class="edu-top"><strong>National University</strong><span class="year">2024 – now</span></div>
+              <div class="edu-note">Philosophy, undergraduate</div>
+            </article>
+            <article class="education-item">
+              <div class="edu-top"><strong>HSC</strong><span class="year">2024</span></div>
+              <div class="edu-note">Science group</div>
+            </article>
+            <article class="education-item">
+              <div class="edu-top"><strong>SSC</strong><span class="year">2022</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-number">03.</span>
+          <h2>What I use</h2>
+        </div>
+        <div class="skills">
+          <div class="skill"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/javascript/javascript-original.svg" alt="" width="20" height="20" loading="lazy"></span> JavaScript</div>
+          <div class="skill"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/nodejs/nodejs-original.svg" alt="" width="20" height="20" loading="lazy"></span> Node.js</div>
+          <div class="skill"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/python/python-original.svg" alt="" width="20" height="20" loading="lazy"></span> Python</div>
+          <div class="skill"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/flutter/flutter-original.svg" alt="" width="20" height="20" loading="lazy"></span> Dart / Flutter</div>
+          <div class="skill"><span class="skill-icon"><svg style="color:var(--accent-text)" aria-hidden="true"><use href="#i-api"/></svg></span> REST APIs</div>
+          <div class="skill"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/html5/html5-original.svg" alt="" width="20" height="20" loading="lazy"></span> HTML &amp; CSS</div>
+          <div class="skill"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg" alt="" width="20" height="20" loading="lazy"></span> Git, GitHub Actions</div>
+          <div class="skill"><span class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mongodb/mongodb-original.svg" alt="" width="20" height="20" loading="lazy"></span> MongoDB, SQLite</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-number">04.</span>
+          <h2>Projects</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project">
+            <strong>0XDL</strong>
+            <p>Video downloader for Android. Uses ffmpeg and has higher quality options, including 4K.</p>
+            <div class="tags"><span>Flutter</span><span>Android</span><span>ffmpeg</span></div>
+          </article>
+          <article class="project">
+            <strong>Annua</strong>
+            <p>Keeps your birthdays and events in one place and reminds you through your calendar.</p>
+            <div class="tags"><span>Flutter</span><span>Android</span></div>
+          </article>
+        </div>
+        <p class="more">Bots and API code are on <a href="https://github.com/ZeroEx-0X/" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="section-number">05.</span>
+          <h2>Contact</h2>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:adittadatta@gmail.com">
+            <div class="contact-icon-bg"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></div>
+            <div class="contact-details"><span class="contact-label">Email</span><span class="contact-value">adittadatta@gmail.com</span></div>
+          </a>
+          <a class="contact-card" href="https://t.me/Adi_0X" target="_blank" rel="noopener noreferrer">
+            <div class="contact-icon-bg"><svg class="icon" aria-hidden="true"><use href="#i-tg"/></svg></div>
+            <div class="contact-details"><span class="contact-label">Telegram</span><span class="contact-value">@Adi_0X</span></div>
+          </a>
+          <a class="contact-card" href="https://github.com/Aditta-Datta" target="_blank" rel="noopener noreferrer">
+            <div class="contact-icon-bg"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></div>
+            <div class="contact-details"><span class="contact-label">GitHub</span><span class="contact-value">Aditta-Datta</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div><strong style="color:var(--text-bold)">Aditta Datta</strong>, Chattogram</div>
+      <div class="footer-links">
+        <a href="#home">Top</a>
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/ZeroEx-0X/" target="_blank" rel="noopener noreferrer">Zeroex</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var root = document.documentElement;
+    var toggle = document.getElementById('themeToggle');
+    var icon = document.getElementById('themeIcon');
+    var label = document.getElementById('themeText');
+    var meta = document.querySelector('meta[name="theme-color"]');
+
+    function setTheme(t) {
+      var dark = t === 'dark';
+      root.dataset.theme = t;
+      icon.textContent = dark ? '☀' : '☾';
+      label.textContent = dark ? 'Light mode' : 'Dark mode';
+      toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      meta.setAttribute('content', dark ? '#0d1117' : '#f6f8fa');
+    }
+
+    var saved = null;
+    try { saved = localStorage.getItem('aditta-portfolio-theme'); } catch (e) {}
+    setTheme(saved === 'light' ? 'light' : 'dark');
+
+    toggle.addEventListener('click', function () {
+      var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+      try { localStorage.setItem('aditta-portfolio-theme', next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
